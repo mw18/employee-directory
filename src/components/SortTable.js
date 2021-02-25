@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DateFormat from 'dateformat';
+import TablePagination from '@material-ui/core/TablePagination';
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -35,6 +36,7 @@ export default function BasicTable({users}) {
       <Table className={`${classes.table}`}aria-label="simple table">
         <TableHead>
           <TableRow className={classes.funColor}>
+            <TableCell align="left">Image</TableCell>
             <TableCell>Title</TableCell>
             <TableCell align="right">First</TableCell>
             <TableCell align="right">Last</TableCell>
@@ -44,7 +46,8 @@ export default function BasicTable({users}) {
         </TableHead>
         <TableBody>
         {users.map((user, index) => (
-              <TableRow key={user.login.uuid} className={rowColor(user.gender)}>
+              <TableRow key={user.login.uuid} >
+                <TableCell ><img src={user.picture.thumbnail} alt="thumbnail" /></TableCell>
                 <TableCell component="th" scope="row">{user.name.title}</TableCell>
                 <TableCell align="right"  className={classes.funColor}>{user.name.first}</TableCell>
                 <TableCell align="right">{user.name.last}</TableCell>
@@ -54,6 +57,8 @@ export default function BasicTable({users}) {
           ))}
         </TableBody>
       </Table>
+
+   
     </TableContainer>
   )
 }
